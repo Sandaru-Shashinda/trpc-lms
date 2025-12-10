@@ -14,7 +14,7 @@ export function useAuth() {
   }, [storeLogout, navigate]);
 
   const login = useCallback(
-    (user: any, token: string) => {
+    (user: { role: string; [key: string]: unknown }, token: string) => {
       setAuth(user, token);
 
       // Redirect based on role

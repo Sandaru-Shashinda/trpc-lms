@@ -5,7 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { BookOpen, Clock, DollarSign } from 'lucide-react';
 
 interface ClassCardProps {
-  id: string;
   slug: string;
   title: string;
   description: string;
@@ -22,7 +21,6 @@ interface ClassCardProps {
 }
 
 export function ClassCard({
-  id,
   slug,
   title,
   description,

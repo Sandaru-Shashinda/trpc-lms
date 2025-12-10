@@ -12,7 +12,6 @@ import { toast } from 'sonner';
 import {
   BookOpen,
   Clock,
-  DollarSign,
   CheckCircle2,
   ArrowLeft,
   PlayCircle,
@@ -210,7 +209,7 @@ export function ClassDetailPage() {
                   <CardTitle>Curriculum</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {classData.modules.map((module: any, index: number) => (
+                  {classData.modules.map((module: { title: string; lessonsCount?: number }, index: number) => (
                     <div key={index} className="space-y-2">
                       <h4 className="font-semibold">
                         Module {index + 1}: {module.title}

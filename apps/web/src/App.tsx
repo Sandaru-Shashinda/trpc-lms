@@ -4,7 +4,15 @@ import './styles/globals.css';
 // Pages
 import { HomePage } from '@/pages/HomePage';
 import { LoginPage, RegisterPage } from '@/pages/auth';
-import { BrowseClassesPage, ClassDetailPage } from '@/pages/student';
+import {
+  BrowseClassesPage,
+  ClassDetailPage,
+  StudentDashboardPage,
+  MyClassesPage,
+  LessonViewPage,
+  PaymentsPage,
+  ProfilePage,
+} from '@/pages/student';
 
 // Components
 import { ProtectedRoute, RoleGuard } from '@/components/auth';
@@ -13,15 +21,6 @@ import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 
 // Placeholder dashboard pages
-const StudentDashboardPage = () => (
-  <div>
-    <h1 className="text-3xl font-bold mb-4">Student Dashboard</h1>
-    <p className="text-muted-foreground">
-      Welcome to your student dashboard! This will be built in Phase 4.
-    </p>
-  </div>
-);
-
 const TeacherDashboardPage = () => (
   <div>
     <h1 className="text-3xl font-bold mb-4">Teacher Dashboard</h1>
@@ -94,7 +93,10 @@ function App() {
           }
         >
           <Route index element={<StudentDashboardPage />} />
-          {/* More student routes will be added in Phase 4 */}
+          <Route path="my-classes" element={<MyClassesPage />} />
+          <Route path="class/:classId/lesson/:lessonId" element={<LessonViewPage />} />
+          <Route path="payments" element={<PaymentsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
 
         {/* Teacher Routes - Protected and Role-based */}

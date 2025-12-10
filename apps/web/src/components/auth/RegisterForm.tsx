@@ -75,9 +75,10 @@ export function RegisterForm() {
     setIsLoading(true);
     try {
       // Remove confirmPassword before sending to API
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { confirmPassword, ...registerData } = values;
       await registerMutation.mutateAsync(registerData);
-    } catch (error) {
+    } catch {
       // Error handled by mutation
     }
   };

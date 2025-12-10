@@ -53,7 +53,7 @@ export function LoginForm() {
     setIsLoading(true);
     try {
       await loginMutation.mutateAsync(values);
-    } catch (error) {
+    } catch {
       // Error handled by mutation
     }
   };

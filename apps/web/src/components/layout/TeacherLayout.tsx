@@ -1,11 +1,9 @@
-import { ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 import {
   LayoutDashboard,
   BookOpen,
-  Video,
   Users,
   DollarSign,
   BarChart,
