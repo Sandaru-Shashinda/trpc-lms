@@ -8,8 +8,7 @@ export const paymentRouter = router({
     .input(
       z.object({
         enrollmentId: z.string(),
-        monthNumber: z.number().min(1),
-        paymentMethod: z.enum(['card', 'upi', 'wallet', 'paypal']),
+        month: z.number().min(1),
       })
     )
     .mutation(async ({ ctx, input }) => {

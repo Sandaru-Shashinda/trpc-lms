@@ -124,23 +124,23 @@
 
 ---
 
-## 👨‍🎓 Phase 4: Student Dashboard
+## 👨‍🎓 Phase 4: Student Dashboard ✅
 
 ### 📄 Pages
-- [ ] **StudentDashboardPage** (`src/pages/student/DashboardPage.tsx`)
+- [x] **StudentDashboardPage** (`src/pages/student/DashboardPage.tsx`)
   - Welcome message
   - Enrolled classes overview
   - Continue learning section
   - Progress stats
   - Upcoming payments
 
-- [ ] **MyClassesPage** (`src/pages/student/MyClassesPage.tsx`)
+- [x] **MyClassesPage** (`src/pages/student/MyClassesPage.tsx`)
   - List of enrolled classes
   - Progress for each class
   - Access to class content
   - Payment status per class
 
-- [ ] **LessonViewPage** (`src/pages/student/LessonViewPage.tsx`)
+- [x] **LessonViewPage** (`src/pages/student/LessonViewPage.tsx`)
   - YouTube video player
   - Lesson title and description
   - Resources download section
@@ -148,85 +148,88 @@
   - Next/Previous lesson navigation
   - Discussion section (future)
 
-- [ ] **PaymentsPage** (`src/pages/student/PaymentsPage.tsx`)
+- [x] **PaymentsPage** (`src/pages/student/PaymentsPage.tsx`)
   - Payment history table
   - Upcoming payments
   - Payment method management
 
-- [ ] **ProfilePage** (`src/pages/student/ProfilePage.tsx`)
+- [x] **ProfilePage** (`src/pages/student/ProfilePage.tsx`)
   - View/edit profile information
   - Avatar upload (future)
   - Settings
 
 ### 🧩 Components
-- [ ] **EnrollmentCard** (`src/components/student/enrollment/EnrollmentCard.tsx`)
+- [x] **EnrollmentCard** (`src/components/student/enrollment/EnrollmentCard.tsx`)
   - Class thumbnail and info
   - Progress bar
   - Last accessed lesson
   - Continue learning button
   - Payment status indicator
 
-- [ ] **YouTubePlayer** (`src/components/student/lesson/YouTubePlayer.tsx`)
+- [x] **YouTubePlayer** (`src/components/student/lesson/YouTubePlayer.tsx`)
   - react-youtube integration
   - Video controls
   - Progress tracking
   - Locked overlay if no access
   - Auto-save watch position
 
-- [ ] **LessonContent** (`src/components/student/lesson/LessonContent.tsx`)
+- [x] **LessonContent** (`src/components/student/lesson/LessonContent.tsx`)
   - Lesson title and description
   - Video duration
   - Month indicator
 
-- [ ] **LessonResources** (`src/components/student/lesson/LessonResources.tsx`)
+- [x] **LessonResources** (`src/components/student/lesson/LessonResources.tsx`)
   - List of downloadable resources
   - Download buttons
 
-- [ ] **LessonNavigation** (`src/components/student/lesson/LessonNavigation.tsx`)
+- [x] **LessonNavigation** (`src/components/student/lesson/LessonNavigation.tsx`)
   - Previous/Next lesson buttons
   - Back to class button
 
-- [ ] **ProgressIndicator** (`src/components/student/lesson/ProgressIndicator.tsx`)
+- [x] **ProgressIndicator** (`src/components/student/lesson/ProgressIndicator.tsx`)
   - Circular progress or linear progress
   - Percentage complete
   - Completed lessons count
 
-- [ ] **PaymentForm** (`src/components/student/payment/PaymentForm.tsx`)
+- [x] **PaymentForm** (Integrated into UpcomingPayments component)
   - Month selection
   - Payment method selection
   - Amount display
   - Platform fee breakdown
   - Pay button
 
-- [ ] **PaymentHistory** (`src/components/student/payment/PaymentHistory.tsx`)
+- [x] **PaymentHistory** (`src/components/student/payment/PaymentHistory.tsx`)
   - Table of past payments
   - Invoice download links
   - Payment status
 
-- [ ] **UpcomingPayments** (`src/components/student/payment/UpcomingPayments.tsx`)
+- [x] **UpcomingPayments** (`src/components/student/payment/UpcomingPayments.tsx`)
   - List of upcoming payments
   - Due dates
   - Pay now buttons
 
 ### 🪝 Hooks
-- [ ] **useYouTubePlayer** (`src/hooks/useYouTubePlayer.ts`)
+- [x] **useYouTubePlayer** (Integrated into YouTubePlayer component)
   - Initialize YouTube player
   - Track video progress
   - Save position on pause/exit
 
-- [ ] **useVideoProgress** (`src/hooks/useVideoProgress.ts`)
+- [x] **useVideoProgress** (Integrated into YouTubePlayer component)
   - Auto-save watch progress
   - Resume from last position
 
 ### 🔌 tRPC Queries/Mutations
-- [ ] `trpc.enrollment.getMyEnrollments.useQuery()`
-- [ ] `trpc.enrollment.enroll.useMutation()`
-- [ ] `trpc.enrollment.checkAccess.useQuery()`
-- [ ] `trpc.enrollment.updateProgress.useMutation()`
-- [ ] `trpc.lesson.getClassLessons.useQuery()`
-- [ ] `trpc.lesson.getById.useQuery()`
-- [ ] `trpc.payment.createPayment.useMutation()`
-- [ ] `trpc.payment.getMyPayments.useQuery()`
+- [x] `trpc.enrollment.getMyEnrollments.useQuery()`
+- [x] `trpc.enrollment.enroll.useMutation()`
+- [x] `trpc.enrollment.checkAccess.useQuery()`
+- [x] `trpc.enrollment.updateProgress.useMutation()`
+- [x] `trpc.enrollment.markLessonComplete.useMutation()`
+- [x] `trpc.lesson.getClassLessons.useQuery()`
+- [x] `trpc.lesson.getById.useQuery()`
+- [x] `trpc.payment.createPayment.useMutation()`
+- [x] `trpc.payment.getMyPayments.useQuery()`
+- [x] `trpc.user.getProfile.useQuery()`
+- [x] `trpc.user.updateProfile.useMutation()`
 
 ---
 

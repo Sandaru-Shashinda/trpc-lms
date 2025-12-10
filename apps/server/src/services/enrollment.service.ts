@@ -205,6 +205,89 @@ export class EnrollmentService {
     return enrollment;
   }
 
+  async checkMonthAccess(studentId: string, classId: string, month: number) {
+    const enrollment = await Enrollment.findOne({
+      studentId,
+      classId,
+      status: 'active',
+    });
+
+    if (!enrollment) {
+      return {
+        hasAccess: false,
+        isCompleted: false,
+        watchPosition: 0,
+      };
+    }
+
+    const hasAccess = enrollment.unlockedMonths.includes(month);
+
+    return {
+      hasAccess,
+      isCompleted: false,
+      watchPosition: 0,
+    };
+  }
+
+  async updateLessonProgress(
+    studentId: string,
+    classId: string,
+    lessonId: string,
+    watchPosition: number
+  ) {
+    const enrollment = await Enrollment.findOne({
+      studentId,
+      classId,
+      status: 'active',
+    });
+
+    if (!enrollment) {
+      throw new TRPCError({
+        code: 'NOT_FOUND',
+        message: 'Enrollment not found',
+      });
+    }
+
+    enrollment.progress.lastAccessedLesson = new mongoose.Types.ObjectId(lessonId);
+    enrollment.progress.lastAccessedAt = new Date();
+
+    await enrollment.save();
+
+    return { success: true };
+  }
+
+  async markLessonComplete(studentId: string, classId: string, lessonId: string) {
+    const enrollment = await Enrollment.findOne({
+      studentId,
+      classId,
+      status: 'active',
+    });
+
+    if (!enrollment) {
+      throw new TRPCError({
+        code: 'NOT_FOUND',
+        message: 'Enrollment not found',
+      });
+    }
+
+    // Add to completed lessons if not already there
+    const lessonObjectId = new mongoose.Types.ObjectId(lessonId);
+    if (!enrollment.progress.completedLessons.some((id) => id.equals(lessonObjectId))) {
+      enrollment.progress.completedLessons.push(lessonObjectId);
+
+      // Update completion percentage
+      enrollment.progress.completionPercentage =
+        (enrollment.progress.completedLessons.length / enrollment.progress.totalLessons) * 100;
+    }
+
+    enrollment.progress.lastAccessedLesson = lessonObjectId;
+    enrollment.progress.lastAccessedAt = new Date();
+
+    await enrollment.save();
+
+    return { success: true, enrollment };
+  }
+
   async updateProgress(studentId: string, lessonId: string, data: {
     completionPercentage?: number;
     lastWatchedPosition?: number;

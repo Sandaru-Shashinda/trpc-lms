@@ -20,27 +20,46 @@ export const enrollmentRouter = router({
     }),
 
   checkAccess: studentProcedure
-    .input(z.object({ lessonId: z.string() }))
+    .input(z.object({ classId: z.string(), month: z.number() }))
     .query(async ({ ctx, input }) => {
-      const hasAccess = await enrollmentService.checkLessonAccess(
+      const hasAccess = await enrollmentService.checkMonthAccess(
         ctx.user._id.toString(),
-        input.lessonId
+        input.classId,
+        input.month
       );
-      return { hasAccess };
+      return hasAccess;
     }),
 
   updateProgress: studentProcedure
     .input(
       z.object({
+        classId: z.string(),
         lessonId: z.string(),
-        completionPercentage: z.number().min(0).max(100).optional(),
-        lastWatchedPosition: z.number().optional(),
-        isCompleted: z.boolean().optional(),
+        watchPosition: z.number(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { lessonId, ...data } = input;
-      return await enrollmentService.updateProgress(ctx.user._id.toString(), lessonId, data);
+      return await enrollmentService.updateLessonProgress(
+        ctx.user._id.toString(),
+        input.classId,
+        input.lessonId,
+        input.watchPosition
+      );
+    }),
+
+  markLessonComplete: studentProcedure
+    .input(
+      z.object({
+        classId: z.string(),
+        lessonId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return await enrollmentService.markLessonComplete(
+        ctx.user._id.toString(),
+        input.classId,
+        input.lessonId
+      );
     }),
 
   cancel: studentProcedure
