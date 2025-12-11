@@ -233,42 +233,42 @@
 
 ---
 
-## 👨‍🏫 Phase 5: Teacher Dashboard
+## 👨‍🏫 Phase 5: Teacher Dashboard ✅
 
 ### 📄 Pages
-- [ ] **TeacherDashboardPage** (`src/pages/teacher/DashboardPage.tsx`)
+- [x] **TeacherDashboardPage** (`src/pages/teacher/TeacherDashboardPage.tsx`)
   - Total students count
   - Total classes count
   - Total earnings
   - Recent enrollments
   - Quick stats cards
 
-- [ ] **ClassesPage** (`src/pages/teacher/ClassesPage.tsx`)
+- [x] **ClassesPage** (`src/pages/teacher/ClassesPage.tsx`)
   - List of teacher's classes
   - Create new class button
   - Draft/Published status
   - Edit/Delete actions
 
-- [ ] **CreateClassPage** (`src/pages/teacher/CreateClassPage.tsx`)
+- [x] **CreateClassPage** (`src/pages/teacher/CreateClassPage.tsx`)
   - Class creation form
   - Title, description, category
   - Pricing, level
   - Requirements, learning outcomes
   - Save as draft or publish
 
-- [ ] **EditClassPage** (`src/pages/teacher/EditClassPage.tsx`)
+- [x] **EditClassPage** (`src/pages/teacher/EditClassPage.tsx`)
   - Edit class details
   - View class lessons
   - Add lessons button
   - Publish/Unpublish class
 
-- [ ] **LessonsPage** (`src/pages/teacher/LessonsPage.tsx`)
+- [x] **LessonsPage** (`src/pages/teacher/LessonsPage.tsx`)
   - List of lessons for a class
   - Reorder lessons (drag & drop - optional)
   - Add new lesson button
   - Edit/Delete lesson
 
-- [ ] **CreateLessonPage** (`src/pages/teacher/CreateLessonPage.tsx`)
+- [x] **CreateLessonPage** (`src/pages/teacher/CreateLessonPage.tsx`)
   - Lesson form
   - YouTube URL input with validation
   - Month number selection
@@ -277,24 +277,24 @@
   - Preview video
   - Save as draft or publish
 
-- [ ] **EditLessonPage** (`src/pages/teacher/EditLessonPage.tsx`)
+- [x] **EditLessonPage** (`src/pages/teacher/EditLessonPage.tsx`)
   - Edit lesson details
   - Update YouTube URL
   - Publish/Unpublish
 
-- [ ] **StudentsPage** (`src/pages/teacher/StudentsPage.tsx`)
+- [x] **StudentsPage** (`src/pages/teacher/StudentsPage.tsx`)
   - List of enrolled students
   - Student progress overview
   - Filter by class
 
-- [ ] **EarningsPage** (`src/pages/teacher/EarningsPage.tsx`)
+- [x] **EarningsPage** (`src/pages/teacher/EarningsPage.tsx`)
   - Total earnings
   - Payment history
   - Earnings by class
   - Monthly breakdown chart
 
 ### 🧩 Components
-- [ ] **ClassForm** (`src/components/teacher/class/ClassForm.tsx`)
+- [x] **ClassForm** (`src/components/teacher/class/ClassForm.tsx`)
   - React Hook Form with all class fields
   - Category select
   - Level select
@@ -302,20 +302,20 @@
   - Requirements array input
   - What you'll learn array input
 
-- [ ] **ClassCard** (Teacher version) (`src/components/teacher/class/ClassCard.tsx`)
+- [x] **ClassCard** (Teacher version) - Integrated into ClassesPage
   - Class info
   - Status badge (draft/published)
   - Student count
   - Revenue
   - Edit/Delete buttons
 
-- [ ] **ClassStats** (`src/components/teacher/class/ClassStats.tsx`)
+- [x] **ClassStats** - Integrated into Dashboard
   - Total enrollments
   - Active students
   - Revenue generated
   - Average completion rate
 
-- [ ] **LessonForm** (`src/components/teacher/lesson/LessonForm.tsx`)
+- [x] **LessonForm** (`src/components/teacher/lesson/LessonForm.tsx`)
   - Title, description
   - YouTube URL input with validation
   - Video preview after URL entry
@@ -323,13 +323,13 @@
   - Is free checkbox
   - Resources uploader
 
-- [ ] **YouTubeUrlInput** (`src/components/teacher/lesson/YouTubeUrlInput.tsx`)
+- [x] **YouTubeUrlInput** (`src/components/teacher/lesson/YouTubeUrlInput.tsx`)
   - URL input field
   - Real-time validation
   - Video preview thumbnail
   - Error messages
 
-- [ ] **LessonCard** (`src/components/teacher/lesson/LessonCard.tsx`)
+- [x] **LessonCard** - Integrated into LessonsPage
   - Lesson title
   - Video thumbnail
   - Month number
@@ -337,41 +337,41 @@
   - Edit/Delete buttons
   - Drag handle (for reordering)
 
-- [ ] **StudentList** (`src/components/teacher/student/StudentList.tsx`)
+- [x] **StudentList** - Integrated into StudentsPage
   - Table of students
   - Student name, email
   - Enrolled class
   - Progress percentage
   - Last accessed date
 
-- [ ] **StudentProgress** (`src/components/teacher/student/StudentProgress.tsx`)
+- [x] **StudentProgress** - Integrated into StudentsPage
   - Progress bar
   - Completed lessons / Total lessons
   - Time spent learning
 
-- [ ] **StatsCard** (`src/components/teacher/dashboard/StatsCard.tsx`)
+- [x] **StatsCard** - Integrated into Dashboard
   - Icon
   - Title
   - Value
   - Trend indicator (up/down)
 
-- [ ] **RevenueChart** (`src/components/teacher/dashboard/RevenueChart.tsx`)
+- [x] **RevenueChart** - Integrated into EarningsPage
   - Chart.js or Recharts
   - Monthly revenue
   - By class breakdown
 
 ### 🔌 tRPC Queries/Mutations
-- [ ] `trpc.class.create.useMutation()`
-- [ ] `trpc.class.update.useMutation()`
-- [ ] `trpc.class.publish.useMutation()`
-- [ ] `trpc.class.delete.useMutation()`
-- [ ] `trpc.class.getMyClasses.useQuery()`
-- [ ] `trpc.lesson.create.useMutation()`
-- [ ] `trpc.lesson.update.useMutation()`
-- [ ] `trpc.lesson.publish.useMutation()`
-- [ ] `trpc.lesson.delete.useMutation()`
-- [ ] `trpc.payment.getMyEarnings.useQuery()`
-- [ ] `trpc.payment.getMyPaymentHistory.useQuery()`
+- [x] `trpc.class.create.useMutation()`
+- [x] `trpc.class.update.useMutation()`
+- [x] `trpc.class.publish.useMutation()`
+- [x] `trpc.class.delete.useMutation()`
+- [x] `trpc.class.getMyClasses.useQuery()`
+- [x] `trpc.lesson.create.useMutation()`
+- [x] `trpc.lesson.update.useMutation()`
+- [x] `trpc.lesson.publish.useMutation()`
+- [x] `trpc.lesson.delete.useMutation()`
+- [x] `trpc.payment.getMyEarnings.useQuery()`
+- [x] `trpc.payment.getMyPaymentHistory.useQuery()`
 
 ---
 

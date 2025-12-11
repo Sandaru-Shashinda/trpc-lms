@@ -13,22 +13,23 @@ import {
   PaymentsPage,
   ProfilePage,
 } from '@/pages/student';
+import {
+  TeacherDashboardPage,
+  ClassesPage,
+  CreateClassPage,
+  EditClassPage,
+  LessonsPage,
+  CreateLessonPage,
+  EditLessonPage,
+  StudentsPage,
+  EarningsPage,
+} from '@/pages/teacher';
 
 // Components
 import { ProtectedRoute, RoleGuard } from '@/components/auth';
 import { StudentLayout, TeacherLayout } from '@/components/layout';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-
-// Placeholder dashboard pages
-const TeacherDashboardPage = () => (
-  <div>
-    <h1 className="text-3xl font-bold mb-4">Teacher Dashboard</h1>
-    <p className="text-muted-foreground">
-      Welcome to your teacher dashboard! This will be built in Phase 5.
-    </p>
-  </div>
-);
 
 const NotFoundPage = () => (
   <div className="min-h-screen bg-background flex items-center justify-center">
@@ -121,7 +122,14 @@ function App() {
           }
         >
           <Route index element={<TeacherDashboardPage />} />
-          {/* More teacher routes will be added in Phase 5 */}
+          <Route path="classes" element={<ClassesPage />} />
+          <Route path="classes/create" element={<CreateClassPage />} />
+          <Route path="classes/:classId/edit" element={<EditClassPage />} />
+          <Route path="classes/:classId/lessons" element={<LessonsPage />} />
+          <Route path="classes/:classId/lessons/create" element={<CreateLessonPage />} />
+          <Route path="lessons/:lessonId/edit" element={<EditLessonPage />} />
+          <Route path="students" element={<StudentsPage />} />
+          <Route path="earnings" element={<EarningsPage />} />
         </Route>
 
         {/* 404 Not Found */}

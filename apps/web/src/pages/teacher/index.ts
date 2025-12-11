@@ -1,0 +1,9 @@
+export { TeacherDashboardPage } from './TeacherDashboardPage';
+export { ClassesPage } from './ClassesPage';
+export { CreateClassPage } from './CreateClassPage';
+export { EditClassPage } from './EditClassPage';
+export { LessonsPage } from './LessonsPage';
+export { CreateLessonPage } from './CreateLessonPage';
+export { EditLessonPage } from './EditLessonPage';
+export { StudentsPage } from './StudentsPage';
+export { EarningsPage } from './EarningsPage';
