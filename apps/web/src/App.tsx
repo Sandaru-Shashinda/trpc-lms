@@ -23,6 +23,7 @@ import {
   EditLessonPage,
   StudentsPage,
   EarningsPage,
+  AnalyticsPage,
 } from '@/pages/teacher';
 
 // Components
@@ -130,6 +131,7 @@ function App() {
           <Route path="lessons/:lessonId/edit" element={<EditLessonPage />} />
           <Route path="students" element={<StudentsPage />} />
           <Route path="earnings" element={<EarningsPage />} />
+          <Route path="analytics" element={<AnalyticsPage />} />
         </Route>
 
         {/* 404 Not Found */}

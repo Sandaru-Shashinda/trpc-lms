@@ -7,3 +7,4 @@ export { CreateLessonPage } from './CreateLessonPage';
 export { EditLessonPage } from './EditLessonPage';
 export { StudentsPage } from './StudentsPage';
 export { EarningsPage } from './EarningsPage';
+export { AnalyticsPage } from './AnalyticsPage';
