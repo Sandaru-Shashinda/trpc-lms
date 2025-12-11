@@ -375,65 +375,65 @@
 
 ---
 
-## 🎨 Phase 6: Shared Components & Layouts
+## 🎨 Phase 6: Shared Components & Layouts ✅
 
 ### 🧩 Layout Components
-- [ ] **Header** (`src/components/layout/Header.tsx`)
+- [x] **Header** (`src/components/layout/Header.tsx`)
   - Logo
   - Navigation links
   - User menu dropdown
   - Notifications bell
   - Logout button
 
-- [ ] **Footer** (`src/components/layout/Footer.tsx`)
+- [x] **Footer** (`src/components/layout/Footer.tsx`)
   - Links
   - Copyright
   - Social media
 
-- [ ] **Sidebar** (`src/components/layout/Sidebar.tsx`)
+- [x] **Sidebar** (`src/components/layout/Sidebar.tsx`)
   - Navigation menu
   - User profile summary
   - Role-based menu items
 
-- [ ] **MainLayout** (`src/components/layout/MainLayout.tsx`)
+- [x] **MainLayout** (`src/components/layout/MainLayout.tsx`)
   - Header + content + Footer
   - Container wrapper
 
-- [ ] **StudentLayout** (`src/components/layout/StudentLayout.tsx`)
+- [x] **StudentLayout** (`src/components/layout/StudentLayout.tsx`)
   - Header + Sidebar + content
   - Student-specific navigation
 
-- [ ] **TeacherLayout** (`src/components/layout/TeacherLayout.tsx`)
+- [x] **TeacherLayout** (`src/components/layout/TeacherLayout.tsx`)
   - Header + Sidebar + content
   - Teacher-specific navigation
 
 ### 🧩 Shared Components
-- [ ] **Loader** (`src/components/shared/Loader.tsx`)
+- [x] **Loader** (`src/components/shared/Loader.tsx`)
   - Spinner component
   - Full page loader
   - Inline loader
 
-- [ ] **ErrorBoundary** (`src/components/shared/ErrorBoundary.tsx`)
+- [x] **ErrorBoundary** (`src/components/shared/ErrorBoundary.tsx`)
   - Catch React errors
   - Display error UI
   - Reset button
 
-- [ ] **Pagination** (`src/components/shared/Pagination.tsx`)
+- [x] **Pagination** (`src/components/shared/Pagination.tsx`)
   - Previous/Next buttons
   - Page numbers
   - Items per page selector
 
-- [ ] **EmptyState** (`src/components/shared/EmptyState.tsx`)
+- [x] **EmptyState** (`src/components/shared/EmptyState.tsx`)
   - Icon
   - Message
   - Action button (optional)
 
-- [ ] **ConfirmDialog** (`src/components/shared/ConfirmDialog.tsx`)
+- [x] **ConfirmDialog** (`src/components/shared/ConfirmDialog.tsx`)
   - Confirmation modal
   - Yes/No buttons
   - Custom message
 
-- [ ] **NotificationBell** (`src/components/shared/NotificationBell.tsx`)
+- [ ] **NotificationBell** (`src/components/shared/NotificationBell.tsx`) - (Optional, Phase 8)
   - Unread count badge
   - Dropdown with notifications
   - Mark as read functionality
