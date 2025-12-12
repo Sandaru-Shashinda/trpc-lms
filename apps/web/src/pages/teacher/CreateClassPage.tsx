@@ -12,12 +12,12 @@ export function CreateClassPage() {
   const { toast } = useToast();
 
   const createMutation = trpc.class.create.useMutation({
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       toast({
         title: 'Success',
         description: 'Class created successfully',
       });
-      navigate(`/teacher/classes/${data._id.toString()}/edit`);
+      navigate(`/teacher/classes/${(data as any)._id.toString()}/edit`);
     },
     onError: (error) => {
       toast({

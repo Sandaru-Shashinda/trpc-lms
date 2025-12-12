@@ -25,12 +25,12 @@ export function LessonsPage() {
   const { data: classData, isLoading: classLoading } = trpc.class.getById.useQuery(
     { classId: classId! },
     { enabled: !!classId }
-  );
+  ) as any;
 
   const { data: lessons, isLoading: lessonsLoading, refetch } = trpc.lesson.getClassLessons.useQuery(
     { classId: classId! },
     { enabled: !!classId }
-  );
+  ) as any;
 
   const deleteMutation = trpc.lesson.delete.useMutation({
     onSuccess: () => {
@@ -112,7 +112,7 @@ export function LessonsPage() {
   }
 
   // Group lessons by month
-  const lessonsByMonth = lessons?.reduce((acc, lesson) => {
+  const lessonsByMonth = (lessons as any[])?.reduce((acc, lesson) => {
     const month = lesson.monthNumber;
     if (!acc[month]) {
       acc[month] = [];
@@ -178,7 +178,7 @@ export function LessonsPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {lessonsByMonth?.[month]?.map((lesson) => (
+                {lessonsByMonth?.[month]?.map((lesson: any) => (
                   <div
                     key={lesson._id.toString()}
                     className="flex items-center gap-4 p-4 border rounded-lg hover:bg-accent transition-colors"

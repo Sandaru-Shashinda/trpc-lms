@@ -1,4 +1,4 @@
-import { Lesson, ILesson } from '../models/Lesson.model';
+import { Lesson } from '../models/Lesson.model';
 import { Class } from '../models/Class.model';
 import { Enrollment } from '../models/Enrollment.model';
 import { TRPCError } from '@trpc/server';

@@ -1,4 +1,4 @@
-import { Class, IClass } from '../models/Class.model';
+import { Class } from '../models/Class.model';
 import { User } from '../models/User.model';
 import { TRPCError } from '@trpc/server';
 import { generateSlug } from '../utils/slug.utils';
@@ -155,6 +155,20 @@ export class ClassService {
 
   async getClassById(classId: string) {
     const classData = await Class.findById(classId)
+      .populate('teacherId', 'firstName lastName profilePicture teacherProfile');
+
+    if (!classData) {
+      throw new TRPCError({
+        code: 'NOT_FOUND',
+        message: 'Class not found',
+      });
+    }
+
+    return classData;
+  }
+
+  async getClassBySlug(slug: string) {
+    const classData = await Class.findOne({ slug })
       .populate('teacherId', 'firstName lastName profilePicture teacherProfile');
 
     if (!classData) {

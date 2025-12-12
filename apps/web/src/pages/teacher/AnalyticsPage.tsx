@@ -31,17 +31,17 @@ const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'
 export function AnalyticsPage() {
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d' | '1y'>('30d');
 
-  const { data: classes, isLoading: classesLoading } = trpc.class.getMyClasses.useQuery();
-  const { data: earnings, isLoading: earningsLoading } = trpc.payment.getMyEarnings.useQuery();
+  const { data: classes, isLoading: classesLoading } = trpc.class.getMyClasses.useQuery() as any;
+  const { data: earnings, isLoading: earningsLoading } = trpc.payment.getMyEarnings.useQuery() as any;
   const { data: paymentHistory, isLoading: paymentsLoading } =
-    trpc.payment.getMyPaymentHistory.useQuery();
+    trpc.payment.getMyPaymentHistory.useQuery() as any;
 
   const isLoading = classesLoading || earningsLoading || paymentsLoading;
 
   // Calculate metrics
-  const totalStudents = classes?.reduce((acc, cls) => acc + (cls.enrollmentCount || 0), 0) || 0;
-  const totalRevenue = earnings?.totalEarnings || 0;
-  const publishedClasses = classes?.filter((c) => c.status === 'published').length || 0;
+  const totalStudents = (classes as any)?.reduce((acc: any, cls: any) => acc + (cls.enrollmentCount || 0), 0) || 0;
+  const totalRevenue = (earnings as any)?.totalEarnings || 0;
+  const publishedClasses = (classes as any)?.filter((c: any) => c.status === 'published').length || 0;
 
   // Average completion rate (mock data - would come from backend)
   const avgCompletionRate = 68;
@@ -52,7 +52,7 @@ export function AnalyticsPage() {
 
     const monthlyData: Record<string, number> = {};
 
-    paymentHistory.forEach((payment) => {
+    (paymentHistory as any).forEach((payment: any) => {
       if (payment.status === 'completed') {
         const date = new Date(payment.createdAt);
         const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
@@ -79,7 +79,7 @@ export function AnalyticsPage() {
 
     const classRevenue: Record<string, { name: string; revenue: number }> = {};
 
-    paymentHistory.forEach((payment) => {
+    (paymentHistory as any).forEach((payment: any) => {
       if (payment.status === 'completed') {
         const classId = payment.classId._id.toString();
         if (!classRevenue[classId]) {
@@ -101,13 +101,13 @@ export function AnalyticsPage() {
   const getEnrollmentData = () => {
     if (!classes) return [];
 
-    return classes
-      .filter((c) => c.status === 'published')
-      .map((cls) => ({
+    return (classes as any)
+      .filter((c: any) => c.status === 'published')
+      .map((cls: any) => ({
         name: cls.title.length > 20 ? cls.title.substring(0, 20) + '...' : cls.title,
         students: cls.enrollmentCount || 0,
       }))
-      .sort((a, b) => b.students - a.students)
+      .sort((a: any, b: any) => b.students - a.students)
       .slice(0, 5);
   };
 
@@ -284,7 +284,7 @@ export function AnalyticsPage() {
                     cx="50%"
                     cy="50%"
                     outerRadius={100}
-                    label={(entry) => `$${entry.revenue}`}
+                    label={(entry: any) => `$${entry.revenue}`}
                   >
                     {revenueByClass.map((_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

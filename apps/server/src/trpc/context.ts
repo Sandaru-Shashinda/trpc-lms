@@ -1,6 +1,7 @@
-import { CreateExpressContextOptions } from '@trpc/server/adapters/express';
+import type { CreateExpressContextOptions } from '@trpc/server/adapters/express';
+import type { IUser } from '../models/User.model';
 import jwt from 'jsonwebtoken';
-import { User, IUser } from '../models/User.model';
+import { User } from '../models/User.model';
 
 export const createContext = async ({ req, res }: CreateExpressContextOptions) => {
   // Get token from header or cookie

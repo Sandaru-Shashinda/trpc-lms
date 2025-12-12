@@ -21,7 +21,7 @@ export function ClassesPage() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [classToDelete, setClassToDelete] = useState<string | null>(null);
 
-  const { data: classes, isLoading, refetch } = trpc.class.getMyClasses.useQuery();
+  const { data: classes, isLoading, refetch } = trpc.class.getMyClasses.useQuery() as any;
   const deleteMutation = trpc.class.delete.useMutation({
     onSuccess: () => {
       toast({
@@ -103,7 +103,7 @@ export function ClassesPage() {
         </Card>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {classes.map((cls) => (
+          {classes.map((cls: any) => (
             <Card key={cls._id.toString()} className="overflow-hidden">
               <CardHeader className="p-0">
                 <div className="h-40 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">

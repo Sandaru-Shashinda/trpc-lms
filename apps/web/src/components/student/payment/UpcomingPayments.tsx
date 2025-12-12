@@ -44,7 +44,8 @@ export function UpcomingPayments({ payments }: UpcomingPaymentsProps) {
     setProcessingId(enrollmentId);
     paymentMutation.mutate({
       enrollmentId,
-      month,
+      monthNumber: month,
+      paymentMethod: 'card' as const, // Default payment method
     });
   };
 

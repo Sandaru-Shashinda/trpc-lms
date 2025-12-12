@@ -1,4 +1,4 @@
-import { router, teacherProcedure, protectedProcedure, publicProcedure } from '../trpc/trpc';
+import { router, teacherProcedure, publicProcedure } from '../trpc/trpc';
 import { classService } from '../services/class.service';
 import { z } from 'zod';
 
@@ -74,5 +74,11 @@ export const classRouter = router({
     .input(z.object({ classId: z.string() }))
     .query(async ({ input }) => {
       return await classService.getClassById(input.classId);
+    }),
+
+  getBySlug: publicProcedure
+    .input(z.object({ slug: z.string() }))
+    .query(async ({ input }) => {
+      return await classService.getClassBySlug(input.slug);
     }),
 });

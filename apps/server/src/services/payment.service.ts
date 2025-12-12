@@ -1,4 +1,4 @@
-import { Payment, IPayment } from '../models/Payment.model';
+import { Payment } from '../models/Payment.model';
 import { Enrollment } from '../models/Enrollment.model';
 import { Class } from '../models/Class.model';
 import { enrollmentService } from './enrollment.service';

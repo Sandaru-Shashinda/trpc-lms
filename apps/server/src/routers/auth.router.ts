@@ -54,4 +54,19 @@ export const authRouter = router({
       await user.save();
       return user;
     }),
+
+  changePassword: protectedProcedure
+    .input(
+      z.object({
+        currentPassword: z.string().min(1, 'Current password is required'),
+        newPassword: z.string().min(6, 'New password must be at least 6 characters'),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return await authService.changePassword(
+        ctx.user._id.toString(),
+        input.currentPassword,
+        input.newPassword
+      );
+    }),
 });

@@ -24,7 +24,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 export function StudentsPage() {
   const [selectedClass, setSelectedClass] = useState<string>('all');
 
-  const { data: classes, isLoading: classesLoading } = trpc.class.getMyClasses.useQuery();
+  const { data: classes, isLoading: classesLoading } = trpc.class.getMyClasses.useQuery() as any;
 
   if (classesLoading) {
     return (
@@ -36,7 +36,7 @@ export function StudentsPage() {
   }
 
   // Calculate total students across all classes
-  const totalStudents = classes?.reduce((acc, cls) => acc + (cls.enrollmentCount || 0), 0) || 0;
+  const totalStudents = (classes as any[])?.reduce((acc, cls) => acc + (cls.enrollmentCount || 0), 0) || 0;
 
   return (
     <div className="p-6 space-y-6">
@@ -66,10 +66,10 @@ export function StudentsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {classes?.filter((c) => c.status === 'published').length || 0}
+              {(classes as any[])?.filter((c) => c.status === 'published').length || 0}
             </div>
             <p className="text-xs text-muted-foreground">
-              Out of {classes?.length || 0} total classes
+              Out of {(classes as any[])?.length || 0} total classes
             </p>
           </CardContent>
         </Card>
@@ -86,7 +86,7 @@ export function StudentsPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Classes</SelectItem>
-                {classes?.map((cls) => (
+                {(classes as any[])?.map((cls) => (
                   <SelectItem key={cls._id.toString()} value={cls._id.toString()}>
                     {cls.title}
                   </SelectItem>
@@ -117,7 +117,7 @@ export function StudentsPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {classes
+                {(classes as any[])
                   ?.filter((cls) =>
                     selectedClass === 'all' ? true : cls._id.toString() === selectedClass
                   )

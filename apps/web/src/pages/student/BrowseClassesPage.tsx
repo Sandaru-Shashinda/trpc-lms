@@ -17,14 +17,12 @@ export function BrowseClassesPage() {
   const [level, setLevel] = useState<string | undefined>();
   const [page, setPage] = useState(1);
 
-  // Fetch classes with filters
-  const { data, isLoading } = trpc.class.getPublished.useQuery({
+  // Fetch classes with filters (backend returns full array, no pagination)
+  const { data: classes, isLoading } = trpc.class.getPublished.useQuery({
     search: searchQuery || undefined,
     category,
     level,
-    page,
-    limit: ITEMS_PER_PAGE,
-  });
+  }) as any;
 
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
@@ -48,7 +46,11 @@ export function BrowseClassesPage() {
     setPage(1);
   }, []);
 
-  const totalPages = data?.totalPages || 1;
+  // Handle client-side pagination
+  const allClasses = (Array.isArray(classes) ? classes : []) as any[];
+  const totalPages = Math.ceil(allClasses.length / ITEMS_PER_PAGE);
+  const startIdx = (page - 1) * ITEMS_PER_PAGE;
+  const paginatedClasses = allClasses.slice(startIdx, startIdx + ITEMS_PER_PAGE);
   const hasNextPage = page < totalPages;
   const hasPrevPage = page > 1;
 
@@ -90,17 +92,17 @@ export function BrowseClassesPage() {
         </div>
 
         {/* Results Count */}
-        {!isLoading && data && (
+        {!isLoading && allClasses.length > 0 && (
           <div className="text-sm text-muted-foreground">
-            {data.total} {data.total === 1 ? 'class' : 'classes'} found
+            {allClasses.length} {allClasses.length === 1 ? 'class' : 'classes'} found
           </div>
         )}
 
         {/* Classes Grid */}
-        <ClassGrid classes={data?.classes || []} isLoading={isLoading} />
+        <ClassGrid classes={paginatedClasses} isLoading={isLoading} />
 
         {/* Pagination */}
-        {!isLoading && data && totalPages > 1 && (
+        {!isLoading && allClasses.length > 0 && totalPages > 1 && (
           <div className="flex items-center justify-center gap-2">
             <Button
               variant="outline"

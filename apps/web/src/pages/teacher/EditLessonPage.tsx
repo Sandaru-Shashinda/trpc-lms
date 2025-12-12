@@ -1,4 +1,4 @@
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { trpc } from '@/lib/trpc';
 import { LessonForm } from '@/components/teacher/lesson/LessonForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,13 +10,12 @@ import { ArrowLeft, Eye } from 'lucide-react';
 
 export function EditLessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
-  const navigate = useNavigate();
   const { toast } = useToast();
 
   const { data: lesson, isLoading } = trpc.lesson.getById.useQuery(
     { lessonId: lessonId! },
     { enabled: !!lessonId }
-  );
+  ) as any;
 
   const updateMutation = trpc.lesson.update.useMutation({
     onSuccess: () => {

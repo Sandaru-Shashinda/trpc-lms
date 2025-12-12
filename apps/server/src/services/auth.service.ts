@@ -1,6 +1,6 @@
-import { User, IUser } from '../models/User.model';
+import { User } from '../models/User.model';
 import { hashPassword, comparePassword } from '../utils/bcrypt.utils';
-import { generateToken, JWTPayload } from '../utils/jwt.utils';
+import { generateToken } from '../utils/jwt.utils';
 import { TRPCError } from '@trpc/server';
 
 interface RegisterInput {
@@ -162,6 +162,36 @@ export class AuthService {
     }
 
     return user;
+  }
+
+  async changePassword(userId: string, currentPassword: string, newPassword: string) {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new TRPCError({
+        code: 'NOT_FOUND',
+        message: 'User not found',
+      });
+    }
+
+    // Verify current password
+    const isPasswordValid = await comparePassword(currentPassword, user.password);
+
+    if (!isPasswordValid) {
+      throw new TRPCError({
+        code: 'UNAUTHORIZED',
+        message: 'Current password is incorrect',
+      });
+    }
+
+    // Hash new password
+    const hashedPassword = await hashPassword(newPassword);
+
+    // Update password
+    user.password = hashedPassword;
+    await user.save();
+
+    return { success: true, message: 'Password changed successfully' };
   }
 }
 

@@ -1,4 +1,4 @@
-import { Enrollment, IEnrollment } from '../models/Enrollment.model';
+import { Enrollment } from '../models/Enrollment.model';
 import { Class } from '../models/Class.model';
 import { User } from '../models/User.model';
 import { Lesson } from '../models/Lesson.model';
@@ -232,8 +232,7 @@ export class EnrollmentService {
   async updateLessonProgress(
     studentId: string,
     classId: string,
-    lessonId: string,
-    watchPosition: number
+    lessonId: string
   ) {
     const enrollment = await Enrollment.findOne({
       studentId,

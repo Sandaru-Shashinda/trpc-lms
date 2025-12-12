@@ -5,6 +5,8 @@ import { lessonRouter } from '../routers/lesson.router';
 import { enrollmentRouter } from '../routers/enrollment.router';
 import { paymentRouter } from '../routers/payment.router';
 import { userRouter } from '../routers/user.router';
+import { notificationRouter } from '../routers/notification.router';
+import { discussionRouter } from '../routers/discussion.router';
 
 export const appRouter = router({
   auth: authRouter,
@@ -13,6 +15,8 @@ export const appRouter = router({
   enrollment: enrollmentRouter,
   payment: paymentRouter,
   user: userRouter,
+  notification: notificationRouter,
+  discussion: discussionRouter,
 });
 
 export type AppRouter = typeof appRouter;

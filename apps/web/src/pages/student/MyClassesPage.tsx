@@ -10,10 +10,10 @@ import { BookOpen, ArrowRight } from 'lucide-react';
 export function MyClassesPage() {
   const [activeTab, setActiveTab] = useState<'all' | 'in-progress' | 'completed'>('all');
 
-  const { data: enrollments, isLoading } = trpc.enrollment.getMyEnrollments.useQuery();
+  const { data: enrollments, isLoading } = trpc.enrollment.getMyEnrollments.useQuery() as any;
 
   // Filter enrollments based on tab
-  const filteredEnrollments = enrollments?.filter((enrollment) => {
+  const filteredEnrollments = (enrollments as any[])?.filter((enrollment: any) => {
     if (activeTab === 'in-progress') {
       return enrollment.progress.percentage < 100;
     }
@@ -23,8 +23,8 @@ export function MyClassesPage() {
     return true; // 'all' tab
   });
 
-  const inProgressCount = enrollments?.filter(e => e.progress.percentage < 100).length || 0;
-  const completedCount = enrollments?.filter(e => e.progress.percentage === 100).length || 0;
+  const inProgressCount = (enrollments as any[])?.filter((e: any) => e.progress.percentage < 100).length || 0;
+  const completedCount = (enrollments as any[])?.filter((e: any) => e.progress.percentage === 100).length || 0;
 
   return (
     <div className="space-y-6">
@@ -61,9 +61,9 @@ export function MyClassesPage() {
                 </div>
               ))}
             </div>
-          ) : filteredEnrollments && filteredEnrollments.length > 0 ? (
+          ) : (filteredEnrollments as any[]) && (filteredEnrollments as any[]).length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredEnrollments.map((enrollment) => (
+              {(filteredEnrollments as any[]).map((enrollment: any) => (
                 <EnrollmentCard key={enrollment._id} enrollment={enrollment} />
               ))}
             </div>

@@ -24,10 +24,10 @@ export function ClassDetailPage() {
   const navigate = useNavigate();
   const { isAuthenticated, user } = useAuth();
 
-  const { data: classData, isLoading } = trpc.class.getById.useQuery(
+  const { data: classData, isLoading } = trpc.class.getBySlug.useQuery(
     { slug: slug! },
     { enabled: !!slug }
-  );
+  ) as any;
 
   const enrollMutation = trpc.enrollment.enroll.useMutation({
     onSuccess: () => {
@@ -172,7 +172,7 @@ export function ClassDetailPage() {
                 </CardHeader>
                 <CardContent>
                   <ul className="grid sm:grid-cols-2 gap-3">
-                    {classData.whatYoullLearn.map((item, index) => (
+                    {classData.whatYoullLearn.map((item: any, index: any) => (
                       <li key={index} className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
                         <span className="text-sm">{item}</span>
@@ -191,7 +191,7 @@ export function ClassDetailPage() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {classData.requirements.map((req, index) => (
+                    {classData.requirements.map((req: any, index: any) => (
                       <li key={index} className="flex items-start gap-2 text-sm">
                         <span className="text-muted-foreground">•</span>
                         <span>{req}</span>
@@ -203,13 +203,13 @@ export function ClassDetailPage() {
             )}
 
             {/* Curriculum Preview */}
-            {classData.modules && classData.modules.length > 0 && (
+            {(classData?.modules as any[]) && (classData?.modules as any[]).length > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle>Curriculum</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {classData.modules.map((module: { title: string; lessonsCount?: number }, index: number) => (
+                  {(classData?.modules as any[]).map((module: any, index: number) => (
                     <div key={index} className="space-y-2">
                       <h4 className="font-semibold">
                         Module {index + 1}: {module.title}

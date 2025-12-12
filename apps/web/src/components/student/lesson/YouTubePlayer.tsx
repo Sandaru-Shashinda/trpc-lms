@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import YouTube, { YouTubeProps, YouTubePlayer as YouTubePlayerType } from 'react-youtube';
+import YouTube, { YouTubePlayer as YouTubePlayerType } from 'react-youtube';
+import type { YouTubeProps } from 'react-youtube';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Lock, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';

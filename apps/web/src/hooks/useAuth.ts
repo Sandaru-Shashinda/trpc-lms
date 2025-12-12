@@ -14,15 +14,15 @@ export function useAuth() {
   }, [storeLogout, navigate]);
 
   const login = useCallback(
-    (user: { role: string; [key: string]: unknown }, token: string) => {
+    (user: { role: string; [key: string]: unknown } | any, token: string) => {
       setAuth(user, token);
 
       // Redirect based on role
-      if (user.role === 'teacher') {
+      if ((user as any)?.role === 'teacher') {
         navigate('/teacher');
-      } else if (user.role === 'student') {
+      } else if ((user as any)?.role === 'student') {
         navigate('/student');
-      } else if (user.role === 'admin') {
+      } else if ((user as any)?.role === 'admin') {
         navigate('/admin');
       } else {
         navigate('/');

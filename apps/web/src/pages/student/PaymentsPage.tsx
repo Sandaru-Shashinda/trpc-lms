@@ -7,14 +7,14 @@ import { trpc } from '@/lib/trpc';
 import { DollarSign, Calendar, CreditCard } from 'lucide-react';
 
 export function PaymentsPage() {
-  const { data: paymentData, isLoading } = trpc.payment.getMyPayments.useQuery();
+  const { data: paymentData, isLoading } = trpc.payment.getMyPayments.useQuery() as any;
 
-  const totalPaid = paymentData?.history
-    ?.filter(p => p.status === 'completed')
-    ?.reduce((acc, p) => acc + p.amount + p.platformFee, 0) || 0;
+  const totalPaid = (paymentData?.history as any[])
+    ?.filter((p: any) => p.status === 'completed')
+    ?.reduce((acc: number, p: any) => acc + p.amount + p.platformFee, 0) || 0;
 
-  const upcomingCount = paymentData?.upcoming?.length || 0;
-  const overdueCount = paymentData?.upcoming?.filter(p => p.status === 'overdue').length || 0;
+  const upcomingCount = (paymentData?.upcoming as any[])?.length || 0;
+  const overdueCount = (paymentData?.upcoming as any[])?.filter((p: any) => p.status === 'overdue').length || 0;
 
   return (
     <div className="space-y-6">
@@ -103,7 +103,7 @@ export function PaymentsPage() {
               ))}
             </div>
           ) : (
-            <UpcomingPayments payments={paymentData?.upcoming || []} />
+            <UpcomingPayments payments={(paymentData?.upcoming as any[]) || []} />
           )}
         </TabsContent>
 
@@ -111,7 +111,7 @@ export function PaymentsPage() {
           {isLoading ? (
             <Skeleton className="h-64" />
           ) : (
-            <PaymentHistory payments={paymentData?.history || []} />
+            <PaymentHistory payments={(paymentData?.history as any[]) || []} />
           )}
         </TabsContent>
       </Tabs>

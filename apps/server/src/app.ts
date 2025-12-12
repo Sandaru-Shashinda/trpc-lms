@@ -2,12 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import path from 'path';
 import * as trpcExpress from '@trpc/server/adapters/express';
 
 import { appRouter } from './trpc/router';
 import { createContext } from './trpc/context';
 import { errorMiddleware } from './middleware/error.middleware';
 import { logger } from './utils/logger';
+import uploadRoutes from './routes/upload.routes';
 
 const app = express();
 
@@ -21,10 +23,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan('dev'));
 
+// Serve static files (uploaded avatars)
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
+
+// Upload routes
+app.use('/api/upload', uploadRoutes);
 
 // tRPC endpoint
 app.use(

@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 export function TeacherDashboardPage() {
-  const { data: classes, isLoading: classesLoading } = trpc.class.getMyClasses.useQuery();
-  const { data: earnings, isLoading: earningsLoading } = trpc.payment.getMyEarnings.useQuery();
+  const { data: classes, isLoading: classesLoading } = trpc.class.getMyClasses.useQuery() as any;
+  const { data: earnings, isLoading: earningsLoading } = trpc.payment.getMyEarnings.useQuery() as any;
 
-  const totalClasses = classes?.length || 0;
-  const publishedClasses = classes?.filter((c) => c.status === 'published').length || 0;
-  const totalStudents = classes?.reduce((acc, c) => acc + (c.enrollmentCount || 0), 0) || 0;
-  const totalEarnings = earnings?.totalEarnings || 0;
+  const totalClasses = (classes as any[])?.length || 0;
+  const publishedClasses = (classes as any[])?.filter((c) => c.status === 'published').length || 0;
+  const totalStudents = (classes as any[])?.reduce((acc, c) => acc + (c.enrollmentCount || 0), 0) || 0;
+  const totalEarnings = (earnings as any)?.totalEarnings || 0;
 
   const stats = [
     {
@@ -122,7 +122,7 @@ export function TeacherDashboardPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {classes.slice(0, 5).map((cls) => (
+              {(classes as any[]).slice(0, 5).map((cls) => (
                 <div
                   key={cls._id.toString()}
                   className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent transition-colors"

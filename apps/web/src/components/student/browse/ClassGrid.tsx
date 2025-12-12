@@ -62,7 +62,6 @@ export function ClassGrid({ classes, isLoading }: ClassGridProps) {
       {classes.map((classItem) => (
         <ClassCard
           key={classItem._id}
-          id={classItem._id}
           slug={classItem.slug}
           title={classItem.title}
           description={classItem.description}

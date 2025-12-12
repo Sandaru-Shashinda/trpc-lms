@@ -13,9 +13,9 @@ import { Badge } from '@/components/ui/badge';
 import { DollarSign, TrendingUp, CreditCard } from 'lucide-react';
 
 export function EarningsPage() {
-  const { data: earnings, isLoading: earningsLoading } = trpc.payment.getMyEarnings.useQuery();
+  const { data: earnings, isLoading: earningsLoading } = trpc.payment.getMyEarnings.useQuery() as any;
   const { data: paymentHistory, isLoading: paymentsLoading } =
-    trpc.payment.getMyPaymentHistory.useQuery();
+    trpc.payment.getMyPaymentHistory.useQuery() as any;
 
   if (earningsLoading || paymentsLoading) {
     return (
@@ -31,8 +31,8 @@ export function EarningsPage() {
     );
   }
 
-  const totalEarnings = earnings?.totalEarnings || 0;
-  const totalPayments = paymentHistory?.length || 0;
+  const totalEarnings = (earnings as any)?.totalEarnings || 0;
+  const totalPayments = (paymentHistory as any)?.length || 0;
 
   // Calculate monthly earnings (current month)
   const now = new Date();
@@ -40,7 +40,7 @@ export function EarningsPage() {
   const currentYear = now.getFullYear();
 
   const monthlyEarnings =
-    paymentHistory?.reduce((acc, payment) => {
+    (paymentHistory as any)?.reduce((acc: any, payment: any) => {
       const paymentDate = new Date(payment.createdAt);
       if (
         paymentDate.getMonth() === currentMonth &&
@@ -127,8 +127,8 @@ export function EarningsPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {paymentHistory.map((payment) => (
-                    <TableRow key={payment._id.toString()}>
+                  {(paymentHistory as any).map((payment: any) => (
+                    <TableRow key={(payment._id as any).toString()}>
                       <TableCell>
                         {new Date(payment.createdAt).toLocaleDateString()}
                       </TableCell>
@@ -164,10 +164,10 @@ export function EarningsPage() {
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right">
-                        ${payment.amount.toFixed(2)}
+                        ${(payment.amount as any).toFixed(2)}
                       </TableCell>
                       <TableCell className="text-right font-medium text-green-600">
-                        ${payment.teacherAmount.toFixed(2)}
+                        ${(payment.teacherAmount as any).toFixed(2)}
                       </TableCell>
                     </TableRow>
                   ))}

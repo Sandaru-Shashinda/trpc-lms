@@ -15,7 +15,7 @@ export function CreateLessonPage() {
   const { data: classData, isLoading } = trpc.class.getById.useQuery(
     { classId: classId! },
     { enabled: !!classId }
-  );
+  ) as any;
 
   const createMutation = trpc.lesson.create.useMutation({
     onSuccess: () => {

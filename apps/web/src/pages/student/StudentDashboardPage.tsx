@@ -17,22 +17,22 @@ export function StudentDashboardPage() {
   const { user } = useAuth();
 
   // Fetch enrollments
-  const { data: enrollments, isLoading } = trpc.enrollment.getMyEnrollments.useQuery();
+  const { data: enrollments, isLoading } = trpc.enrollment.getMyEnrollments.useQuery() as any;
 
   // Calculate stats
   const totalClasses = enrollments?.length || 0;
-  const activeClasses = enrollments?.filter(e => e.paymentStatus === 'active').length || 0;
-  const totalProgress = enrollments?.reduce((acc, e) => acc + e.progress.percentage, 0) || 0;
+  const activeClasses = (enrollments as any[])?.filter((e: any) => e.paymentStatus === 'active').length || 0;
+  const totalProgress = (enrollments as any[])?.reduce((acc: number, e: any) => acc + e.progress.percentage, 0) || 0;
   const avgProgress = totalClasses > 0 ? Math.round(totalProgress / totalClasses) : 0;
 
   // Get classes to continue (with progress < 100%)
-  const continueLearning = enrollments
-    ?.filter(e => e.progress.percentage < 100)
+  const continueLearning = (enrollments as any[])
+    ?.filter((e: any) => e.progress.percentage < 100)
     ?.slice(0, 3) || [];
 
   // Get upcoming payments (overdue or due soon)
-  const upcomingPayments = enrollments
-    ?.filter(e => e.paymentStatus === 'overdue' || e.paymentStatus === 'pending')
+  const upcomingPayments = (enrollments as any[])
+    ?.filter((e: any) => e.paymentStatus === 'overdue' || e.paymentStatus === 'pending')
     ?.slice(0, 3) || [];
 
   return (
@@ -88,7 +88,7 @@ export function StudentDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {enrollments?.reduce((acc, e) => acc + e.progress.completedLessons, 0) || 0}
+              {(enrollments as any[])?.reduce((acc: number, e: any) => acc + e.progress.completedLessons, 0) || 0}
             </div>
             <p className="text-xs text-muted-foreground">
               Lessons completed

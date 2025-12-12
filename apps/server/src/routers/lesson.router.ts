@@ -1,4 +1,4 @@
-import { router, teacherProcedure, protectedProcedure, publicProcedure } from '../trpc/trpc';
+import { router, teacherProcedure, protectedProcedure } from '../trpc/trpc';
 import { lessonService } from '../services/lesson.service';
 import { z } from 'zod';
 

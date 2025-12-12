@@ -35,15 +35,13 @@ export const enrollmentRouter = router({
       z.object({
         classId: z.string(),
         lessonId: z.string(),
-        watchPosition: z.number(),
       })
     )
     .mutation(async ({ ctx, input }) => {
       return await enrollmentService.updateLessonProgress(
         ctx.user._id.toString(),
         input.classId,
-        input.lessonId,
-        input.watchPosition
+        input.lessonId
       );
     }),
 
